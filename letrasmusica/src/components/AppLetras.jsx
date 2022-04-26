@@ -1,6 +1,9 @@
 import Formulario from "./Formulario";
+import useLetras from "../hooks/useLetras";
+import Alerta from "./Alerta";
 
 const AppLetras = () => {
+    const { alerta } = useLetras();
     return ( 
         <>
             <header>Buscador de letras de Canciones</header>
@@ -8,7 +11,7 @@ const AppLetras = () => {
             <Formulario/>
 
             <main>
-
+                {alerta && <Alerta>{alerta}</Alerta>}
             </main>
         </>
     );
