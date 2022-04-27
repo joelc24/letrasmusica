@@ -3,9 +3,9 @@ import useLetras from '../hooks/useLetras';
 
 const Formulario = () => {
 
-    const { setAlerta } = useLetras();
+    const { setAlerta, busquedaLetra } = useLetras();
 
-    const [busquedaLetra, setBusquedaLetra] = useState({
+    const [busqueda, setBusqueda] = useState({
         artista: '',
         cancion: ''
     })
@@ -13,11 +13,12 @@ const Formulario = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-        if(Object.values(busquedaLetra).includes('')){
+        if(Object.values(busqueda).includes('')){
             setAlerta('Coloca Nombre de Artista y Canción')
             return
         }
 
+        busquedaLetra(busqueda)
         setAlerta('')
     }
 
@@ -33,9 +34,9 @@ const Formulario = () => {
                     <input 
                         type="text" 
                         name="artista" placeholder="Nombre Artista"
-                        value={busquedaLetra.artista}
-                        onChange={e => setBusquedaLetra({
-                            ...busquedaLetra,
+                        value={busqueda.artista}
+                        onChange={e => setBusqueda({
+                            ...busqueda,
                             [e.target.name]: e.target.value
                         })}
                     />
@@ -45,9 +46,9 @@ const Formulario = () => {
                     <input 
                         type="text" 
                         name="cancion" placeholder="Nombre Cancion"
-                        value={busquedaLetra.cancion}
-                        onChange={e => setBusquedaLetra({
-                            ...busquedaLetra,
+                        value={busqueda.cancion}
+                        onChange={e => setBusqueda({
+                            ...busqueda,
                             [e.target.name]: e.target.value
                         })}
                     />
